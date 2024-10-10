@@ -3,6 +3,7 @@ package br.com.hotel.servico;
 import org.springframework.stereotype.Service;
 
 import br.com.hotel.dto.ClienteDTO;
+import br.com.hotel.dto.ClientesDTO;
 import br.com.hotel.enums.Status;
 import br.com.hotel.modelo.Cliente;
 import br.com.hotel.repositorio.ClienteRepositorio;
@@ -16,7 +17,17 @@ public class ClienteServico {
 	
 	public Cliente criarCliente(ClienteDTO clienteDTO) {
 		var criar = new Cliente(clienteDTO);
-		criar.setStatus(Status.RESERVADO);
-		return clienteRepositorio.save(criar) 
+	    if(criar.getStatus() == Status.RESERVADO) {
+	    	System.out.println("ja reservado");
+	    }
+		return clienteRepositorio.save(criar);
+	}
+	
+	public ClientesDTO listarClientes() {
+	  var listar = clienteRepositorio.findAll();
+	  if(listar.isEmpty()) {
+		  System.out.println("not found");
+	  }
+	  return listar;
 	}
 }
