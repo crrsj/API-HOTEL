@@ -24,7 +24,7 @@ public class ClienteServico {
 	}
 	
 	public ClientesDTO listarClientes() {
-	  var listar = clienteRepositorio.findAll();
+	  var listar = clienteRepositorio.findAll().stream().map(ClientesDTO::new).toList();
 	  if(listar.isEmpty()) {
 		  System.out.println("not found");
 	  }
