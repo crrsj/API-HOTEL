@@ -1,5 +1,7 @@
 package br.com.hotel.servico;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import br.com.hotel.dto.ClienteDTO;
@@ -23,7 +25,7 @@ public class ClienteServico {
 		return clienteRepositorio.save(criar);
 	}
 	
-	public ClientesDTO listarClientes() {
+	public List<ClientesDTO> listarClientes() {
 	  var listar = clienteRepositorio.findAll().stream().map(ClientesDTO::new).toList();
 	  if(listar.isEmpty()) {
 		  System.out.println("not found");

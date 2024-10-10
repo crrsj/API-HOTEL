@@ -9,8 +9,6 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import br.com.hotel.enums.Pagamento;
 import br.com.hotel.enums.Status;
 import br.com.hotel.modelo.Cliente;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,12 +25,10 @@ public class ClienteDTO {
 	private int quarto;
 	private Double valorDiaria;
 	private int dias;
-	private Double total;
-	@Enumerated(EnumType.STRING)
+	private Double total;	
 	private Pagamento pagamento;
     @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "dd/MM/yyyy")
-	private LocalDate dataSaida;
-	@Enumerated(EnumType.STRING)
+	private LocalDate dataSaida;	
 	private Status status;
 	
 	public ClienteDTO(Cliente cadastrarCliente) {

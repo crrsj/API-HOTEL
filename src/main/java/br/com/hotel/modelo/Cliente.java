@@ -10,6 +10,8 @@ import br.com.hotel.dto.ClienteDTO;
 import br.com.hotel.enums.Pagamento;
 import br.com.hotel.enums.Status;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -37,9 +39,11 @@ public class Cliente {
 	private Double valorDiaria;
 	private int dias;
 	private Double total;
+	@Enumerated(EnumType.STRING)
 	private Pagamento pagamento;
     @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "dd/MM/yyyy")
 	private LocalDate dataSaida;
+    @Enumerated(EnumType.STRING)
 	private Status status;
 	
 	public Cliente(ClienteDTO clienteDTO) {
