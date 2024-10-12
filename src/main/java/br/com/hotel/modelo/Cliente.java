@@ -6,9 +6,12 @@ import java.time.format.DateTimeFormatter;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import br.com.hotel.dto.AtualizarClientesDTO;
 import br.com.hotel.dto.ClienteDTO;
+import br.com.hotel.dto.ClientesDTO;
 import br.com.hotel.enums.Pagamento;
 import br.com.hotel.enums.Status;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -35,6 +38,7 @@ public class Cliente {
 	private String nome;
 	private String cpf;
 	private String fone;
+	@Column(unique = true)
 	private int quarto;
 	private Double valorDiaria;
 	private int dias;
@@ -61,4 +65,28 @@ public class Cliente {
 		this.status = clienteDTO.getStatus();
 		
 	}
+
+	public Cliente(ClientesDTO clientesDTO) {
+	   this.dataEntrada = clientesDTO.getDataEntrada();
+	   this.nome = clientesDTO.getNome();
+	   this.fone = clientesDTO.getFone();
+	   this.quarto = clientesDTO.getQuarto();
+	   this.valorDiaria = clientesDTO.getValorDiaria();
+	   this.dias = clientesDTO.getDias();
+	   this.total = clientesDTO.getTotal();
+	   this.pagamento = clientesDTO.getPagamento();
+	   this.dataSaida  =clientesDTO.getDataSaida();
+	   this.status = clientesDTO.getStatus();
+	}
+
+	public void atualizando(AtualizarClientesDTO clientesDTO) {
+		if(clientesDTO.getPagamento() != null) {
+			this.pagamento = clientesDTO.getPagamento();
+		}
+		if(clientesDTO.getFone() != null) {
+			this.fone = clientesDTO.getFone();
+		}
+	}
+
+	
 }

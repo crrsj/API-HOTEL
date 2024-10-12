@@ -9,12 +9,10 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import br.com.hotel.enums.Pagamento;
 import br.com.hotel.enums.Status;
 import br.com.hotel.modelo.Cliente;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
 public class ClienteDTO {
 	
