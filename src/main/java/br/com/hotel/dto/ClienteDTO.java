@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import br.com.hotel.enums.Pagamento;
 import br.com.hotel.enums.Status;
 import br.com.hotel.modelo.Cliente;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -17,8 +18,12 @@ import lombok.NoArgsConstructor;
 public class ClienteDTO {
 	
 	private String dataEntrada = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
+
+	@NotBlank(message = "não pode estar em branco")
 	private String nome;
+	@NotBlank(message = "não pode estar em branco")
 	private String cpf;
+	@NotBlank(message = "não pode estar em branco")
 	private String fone;
 	private int quarto;
 	private Double valorDiaria;

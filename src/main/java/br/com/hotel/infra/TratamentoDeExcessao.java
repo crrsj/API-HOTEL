@@ -5,10 +5,12 @@ import java.util.NoSuchElementException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import br.com.hotel.dto.QuartoReservado;
+import br.com.hotel.dto.Validacoes;
 
 @RestControllerAdvice
 public class TratamentoDeExcessao {
@@ -25,5 +27,9 @@ public class TratamentoDeExcessao {
 		return new ResponseEntity<>(naoEncontrado,HttpStatus.NOT_FOUND);
 	}
 	
-	
+	@ExceptionHandler(MethodArgumentNotValidException.class)
+	public ResponseEntity<?>validarcampos(MethodArgumentNotValidException ex){
+		var erros = ex.getFieldErrors();
+		return ResponseEntity.badRequest().body(erros.stream().map(Validacoes::new).toList());
+	}
 }

@@ -19,6 +19,7 @@ import br.com.hotel.dto.AtualizarClientesDTO;
 import br.com.hotel.dto.ClienteDTO;
 import br.com.hotel.dto.ClientesDTO;
 import br.com.hotel.servico.ClienteServico;
+import jakarta.validation.Valid;
 
 
 @RestController
@@ -29,7 +30,7 @@ public class ClienteControle {
 	private ClienteServico clienteServico; 
 	
 	@PostMapping
-	public ResponseEntity<ClienteDTO>criarCliente(@RequestBody ClienteDTO clienteDTO){
+	public ResponseEntity<ClienteDTO>criarCliente(@RequestBody @Valid  ClienteDTO clienteDTO){
 		var cadastrarCliente = clienteServico.criarCliente(clienteDTO);
 		var uri = ServletUriComponentsBuilder.fromCurrentRequest().path("{id}").
 		buildAndExpand(cadastrarCliente.getId()).toUri();

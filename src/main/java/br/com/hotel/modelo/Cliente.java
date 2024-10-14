@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import org.hibernate.annotations.Columns;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import br.com.hotel.dto.AtualizarClientesDTO;
@@ -19,6 +21,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -36,7 +39,9 @@ public class Cliente {
 	private Long id;
 	private String dataEntrada = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
 	private String nome;
+	@Size(min = 11,max = 11)
 	private String cpf;
+	@Size(min = 11,max = 11)
 	private String fone;
 	@Column(unique = true)
 	private int quarto;
